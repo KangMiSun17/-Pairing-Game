@@ -13,6 +13,8 @@ img {
     flex: 1 1 20%;
     height: 200px;
     width: 80px;
+    transition: transform 1s;
+    transform-style: preserve-3d;
 }
 
 body {

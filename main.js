@@ -4,8 +4,6 @@ let total = 0; //다 뒤집은 카드
 let score = 0; //점수
 let cards = ['/IMG/10.png','/IMG/10.png', '/IMG/J.png', '/IMG/J.png', '/IMG/Q.png', '/IMG/Q.png', '/IMG/K.png','/IMG/K.png','/IMG/A.png','/IMG/A.png']; //카드 목록
 let pair = [] //짝 카드
-let thisCard = []; //선택한 카드 배열
-let whatCard = document.querySelectorAll('.card_space');
 let how_score = document.querySelector('p');
 
 //카드 뒷면 생성
@@ -21,30 +19,49 @@ for(let i=0; i<cardNum.length; i++){
 //카드 섞기
 cards.sort(function() {
     return Math.random() - Math.random()})
-console.log(cards)
 
 //카드 뒤집기
 space.addEventListener('click', (e) => {
+    rotation(e);
     let what = cards[e.target.id];
     e.target.src = what;
+    pair[current] = what;
     current++;
-    pair.push(what);
     if(current === 2){
         compare(e);
+    }else{
+        
     }
+    finish();
 })
 
 //카드 비교
 compare = (e) => {
-    console.log(pair)
     if(pair[0]===pair[1]){
         total += 2;
-        pair.length = 0;
         score += 1;
         how_score.innerHTML = `점수 : ${score}`
     }else{
-        pair.length = 0;
-        thisCard.length = 0;
+        setTimeout(()=>{
+            rotation(e)
+            e.target.src = '/IMG/뒷면.png'}
+            ,2000)
     }
     current = 0;
+}
+
+//게임 끝났는지 확인
+finish = () => {
+    if(total == cards.length){
+        alert(`당신의 점수는 ${score}점 입니다!`);
+    }
+}
+
+//회전 애니메이션
+rotation = (e) => {
+    if (e.target.style.transform == "rotateY(360deg)") {
+        e.target.style.transform = "rotateY(0deg)";
+    } else {
+        e.target.style.transform = "rotateY(360deg)";
+    }
 }

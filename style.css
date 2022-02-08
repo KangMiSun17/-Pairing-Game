@@ -1,0 +1,20 @@
+body {
+    font-family: 'Black Han Sans', sans-serif;
+}
+
+.card_space{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+img {
+    display: flex;
+    flex: 1 1 20%;
+    height: 200px;
+    width: 80px;
+}
+
+body {
+    text-align: center;
+}

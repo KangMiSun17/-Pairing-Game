@@ -44,12 +44,14 @@ let cards = [
         isOpen: false
     }]; //카드 목록
 let pair = [] //짝 카드
+let index = [] //선택된 카드 번호
 
 //카드 생성
 let cardNum = new Array(cards.length);
 let space = document.querySelector('.card_space');
 for(let i=0; i<cardNum.length; i++){
     cardNum[i] = document.createElement('img');
+    cardNum[i].style = "transform: rotateY(0deg)"
     cardNum[i].id = i;
     space.appendChild(cardNum[i]);
 }
@@ -67,6 +69,8 @@ space.addEventListener('click', (e) => {
         rotation(e);
         e.target.src = cards[e.target.id].img
         pair[current] = cards[e.target.id].img
+        index[current] = e.target.id
+        console.log(index)
         current++
         if(current==2){
             compare()
@@ -82,12 +86,22 @@ space.addEventListener('click', (e) => {
 compare = () => {
     if(pair[0]===pair[1]){
         total += 2;
-        current = 0;
-        pair.length = 0;
+        arr_reset();
     }else{
-        current = 0;
-        pair.length = 0;
+        for(i=0;i<index.length;i++){
+            cards[index[i]].isOpen = false;
+            cardNum[index[i]].style.transform = "rotateY(0deg)"
+            cardNum[index[i]].src = '/IMG/뒷면.jpg'
+        }
+        arr_reset();
     }
+}
+
+//배열 비우기
+arr_reset = () => {
+    current = 0;
+    pair.length = 0;
+    index.length = 0;
 }
 
 //게임 끝났는지 확인
@@ -95,7 +109,7 @@ finish = () => {
     if(total === cards.length){
         setTimeout(()=>{
             alert(`축하합니다! ${time}초 만에 클리어!`)
-            reset()}, 1000)
+            reset()}, 800)
     }
 }
 

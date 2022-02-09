@@ -4,43 +4,43 @@ let total = 0; //다 뒤집은 카드
 let time = 0; //시간
 let cards = [
     { 
-        img: '/IMG/10.png',
+        img: './IMG/10.png',
         isOpen: false
     },
     {
-        img: '/IMG/10.png',
+        img: './IMG/10.png',
         isOpen: false
      },
      {
-         img: '/IMG/J.png',
+         img: './IMG/J.png',
          isOpen: false
      },
     {
-        img: '/IMG/J.png',
+        img: './IMG/J.png',
         isOpen: false
      },
      {
-        img: '/IMG/Q.png',
+        img: './IMG/Q.png',
         isOpen: false
      },
      {
-         img: '/IMG/Q.png',
+         img: './IMG/Q.png',
          isOpen: false
       },
     {
-        img: '/IMG/K.png',
+        img: './IMG/K.png',
         isOpen: false
     },
     {
-        img: '/IMG/K.png',
+        img: './IMG/K.png',
         isOpen: false
     },
     {
-        img: '/IMG/A.png',
+        img: './IMG/A.png',
         isOpen: false
     },
     {
-        img: '/IMG/A.png',
+        img: './IMG/A.png',
         isOpen: false
     }]; //카드 목록
 let pair = [] //짝 카드
@@ -91,7 +91,7 @@ compare = () => {
         for(i=0;i<index.length;i++){
             cards[index[i]].isOpen = false;
             cardNum[index[i]].style.transform = "rotateY(0deg)"
-            cardNum[index[i]].src = '/IMG/뒷면.jpg'
+            cardNum[index[i]].src = './IMG/뒷면.jpg'
         }
         arr_reset();
     }
@@ -126,7 +126,7 @@ rotation = (e) => {
 
 reset = () => {
     for(i=0; i<cards.length; i++){
-        cardNum[i].src = '/IMG/뒷면.jpg'
+        cardNum[i].src = './IMG/뒷면.jpg'
     }
     total = 0;
     time = 0;

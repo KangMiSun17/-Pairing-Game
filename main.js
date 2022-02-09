@@ -80,7 +80,13 @@ space.addEventListener('click', (e) => {
 })
 
 //카드 초기화
-
+card_reset = () => {
+    for(i=0;i<index.length;i++){
+        cards[index[i]].isOpen = false;
+        cardNum[index[i]].style.transform = "rotateY(0deg)"
+        cardNum[index[i]].src = './IMG/뒷면.jpg'
+    }
+}
 
 //카드 비교
 compare = () => {
@@ -88,12 +94,10 @@ compare = () => {
         total += 2;
         arr_reset();
     }else{
-        for(i=0;i<index.length;i++){
-            cards[index[i]].isOpen = false;
-            cardNum[index[i]].style.transform = "rotateY(0deg)"
-            cardNum[index[i]].src = './IMG/뒷면.jpg'
-        }
+        setTimeout(()=>{
+        card_reset();
         arr_reset();
+    },800)
     }
 }
 

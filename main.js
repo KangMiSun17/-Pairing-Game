@@ -130,7 +130,8 @@ rotation = (e) => {
 
 reset = () => {
     for(i=0; i<cards.length; i++){
-        cardNum[i].src = './IMG/뒷면.jpg'
+        cardNum[i].src = './IMG/뒷면.jpg';
+        cardNum[i].isOpen = false;
     }
     total = 0;
     time = 0;

@@ -54,37 +54,32 @@ for(let i=0; i<cardNum.length; i++){
     space.appendChild(cardNum[i]);
 }
 
-//카드 확인
-function FlipCard (e) {
-    if(cards[e.target.id].isOpen){
-        e.target.src = cards[e.target.id].img
-    }else{
-        e.target.src = '/IMG/뒷면.jpg'
-    }
-}
-
 //카드 섞기
 function shuffle () {
     cards.sort(() => Math.random() - Math.random())
+    console.log(cards)
 }
 
 //카드 뒤집기
 space.addEventListener('click', (e) => {
-    cards[e.target.id].isOpen = true;
-    console.log(e.target)
-    pair[current] = cards[e.target.id].img
-    current++
-    if(current==2){
-        compare(e)
+    if(cards[e.target.id].isOpen == false){
+        cards[e.target.id].isOpen = true;
+        rotation(e);
+        e.target.src = cards[e.target.id].img
+        pair[current] = cards[e.target.id].img
+        current++
+        if(current==2){
+            compare()
+        }
+        finish();
     }
-    rotation(e);
-    FlipCard(e);
-    finish();
-    console.log(pair)
 })
 
+//카드 초기화
+
+
 //카드 비교
-compare = (e) => {
+compare = () => {
     if(pair[0]===pair[1]){
         total += 2;
         current = 0;
@@ -98,8 +93,9 @@ compare = (e) => {
 //게임 끝났는지 확인
 finish = () => {
     if(total === cards.length){
-        alert(`축하합니다! ${time}초 만에 클리어!`)
-        reset()
+        setTimeout(()=>{
+            alert(`축하합니다! ${time}초 만에 클리어!`)
+            reset()}, 1000)
     }
 }
 
